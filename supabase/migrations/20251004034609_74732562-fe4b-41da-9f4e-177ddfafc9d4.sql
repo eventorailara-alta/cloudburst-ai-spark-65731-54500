@@ -1,0 +1,2 @@
+ALTER TABLE public.event_settings 
+ADD COLUMN IF NOT EXISTS visible_cards JSONB DEFAULT '["details", "planner", "memories", "full-plan", "tasks", "budget", "invites", "timeline", "vendors", "guests", "tickets", "food", "souvenirs", "weather", "sponsors", "speeches", "faqs", "blogs", "chat", "themes", "decor", "flights"]'::jsonb;
