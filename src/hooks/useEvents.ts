@@ -88,6 +88,27 @@ export const useEvents = () => {
         console.error('Database error creating event:', error);
         throw error;
       }
+
+      // Create default event settings with all visible cards
+      const defaultVisibleCards = [
+        "details", "planner", "full-plan", "budget", "invites", "timeline", 
+        "vendors", "guests", "tickets", "food", "souvenirs", "weather", 
+        "sponsors", "flights", "decor", "themes", "memories", "faqs", 
+        "blogs", "chat"
+      ];
+
+      const { error: settingsError } = await (supabase as any)
+        .from('event_settings')
+        .insert([{
+          event_id: data.id,
+          visible_cards: defaultVisibleCards,
+          external_invites_enabled: true,
+          ice_breakers_enabled: true
+        }]);
+
+      if (settingsError) {
+        console.error('Error creating event settings:', settingsError);
+      }
       
       // Store in localStorage for guest users
       if (!clerkUserId) {
