@@ -13,9 +13,51 @@ import {
 } from 'react-icons/fi';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import carouselImage1 from '@/assets/docs-carousel-1.jpg';
+import carouselImage2 from '@/assets/docs-carousel-2.jpg';
+import carouselImage3 from '@/assets/docs-carousel-3.jpg';
+import carouselImage4 from '@/assets/docs-carousel-4.jpg';
 
 export default function Docs() {
   const navigate = useNavigate();
+
+  const carouselItems = [
+    {
+      image: carouselImage1,
+      title: 'AI-Powered Dashboard',
+      description: 'Manage all your events in one beautiful interface',
+      link: '/dashboard',
+      linkText: 'Go to Dashboard'
+    },
+    {
+      image: carouselImage2,
+      title: 'Beautiful Invitations',
+      description: 'Create stunning AI-generated invitations',
+      link: '/create',
+      linkText: 'Create Event'
+    },
+    {
+      image: carouselImage3,
+      title: 'Guest Management',
+      description: 'Track RSVPs and manage check-ins effortlessly',
+      link: '/find-events',
+      linkText: 'Find Events'
+    },
+    {
+      image: carouselImage4,
+      title: 'Budget Tracking',
+      description: 'Keep your event finances under control',
+      link: '/pricing',
+      linkText: 'View Pricing'
+    },
+  ];
 
   const pageCategories = [
     {
@@ -161,6 +203,47 @@ export default function Docs() {
 
       <main className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto space-y-12">
+          {/* Hero Carousel */}
+          <section className="animate-fade-in">
+            <Carousel className="w-full max-w-5xl mx-auto">
+              <CarouselContent>
+                {carouselItems.map((item, index) => (
+                  <CarouselItem key={index}>
+                    <div className="space-y-4">
+                      <div className="relative rounded-xl overflow-hidden shadow-elegant">
+                        <img 
+                          src={item.image} 
+                          alt={item.title}
+                          className="w-full h-[400px] md:h-[500px] object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                          <h3 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h3>
+                          <p className="text-lg text-white/90">{item.description}</p>
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <Button
+                          onClick={() => navigate(item.link)}
+                          variant="outline"
+                          size="lg"
+                          className="gap-2"
+                        >
+                          {item.linkText}
+                          <FiArrowLeft className="h-4 w-4 rotate-180" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="left-4" />
+              <CarouselNext className="right-4" />
+            </Carousel>
+          </section>
+
+          <Separator className="my-8" />
+
           {/* Introduction */}
           <section className="text-center space-y-4 animate-fade-in">
             <Badge variant="secondary" className="mb-2">Complete Documentation</Badge>
