@@ -10,6 +10,7 @@ import { Planet, IceCream, Cat } from 'react-kawaii';
 import { useKawaiiTheme } from '@/hooks/useKawaiiTheme';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import academyxLogo from '@/assets/academyx-logo.png';
+import agilityLogo from '@/assets/agility-logo.png';
 import { Step } from 'react-joyride';
 
 const homepageSteps: Step[] = [
@@ -228,6 +229,25 @@ export default function Index() {
               <Clock className="h-5 w-5" />
               Start Planning Now
             </Button>
+          </section>
+
+          {/* Sponsors Section */}
+          <section className="py-16 overflow-hidden">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-muted-foreground/60">Trusted By</h3>
+            </div>
+            <div className="relative">
+              <div className="flex animate-[scroll_20s_linear_infinite] hover:[animation-play-state:paused]">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="flex items-center gap-12 px-12 shrink-0">
+                    <img src={agilityLogo} alt="Agility" className="h-12 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                    <span className="text-3xl font-bold text-muted-foreground/40">×</span>
+                    <img src={academyxLogo} alt="AcademyX" className="h-12 object-contain opacity-60 hover:opacity-100 transition-opacity" />
+                    <span className="text-3xl font-bold text-muted-foreground/40">×</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </section>
         </div>
       </main>
