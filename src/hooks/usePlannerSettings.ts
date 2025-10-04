@@ -37,7 +37,7 @@ export const usePlannerSettings = (eventId: string) => {
           remove_completed_from_todo: false,
           show_completed_tasks: true,
           default_view: 'dashboard',
-          play_tictactoe_loading: false,
+          play_tictactoe_loading: true,
         };
         
         const { data: newData, error: createError } = await (supabase as any)
